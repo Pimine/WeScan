@@ -10,9 +10,9 @@ import Foundation
 import AVFoundation
 
 /// A class containing global variables and settings for this capture session
-final class CaptureSession {
+public final class CaptureSession {
     
-    static let current = CaptureSession()
+    public static let current = CaptureSession()
     
     /// The AVCaptureDevice used for the flash and focus setting
     var device: CaptureDevice?
