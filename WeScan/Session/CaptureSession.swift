@@ -15,16 +15,16 @@ public final class CaptureSession {
     public static let current = CaptureSession()
     
     /// The AVCaptureDevice used for the flash and focus setting
-    var device: CaptureDevice?
+    public var device: CaptureDevice?
     
     /// Whether the user is past the scanning screen or not (needed to disable auto scan on other screens)
-    var isEditing: Bool
+    public var isEditing: Bool
     
     /// The status of auto scan. Auto scan tries to automatically scan a detected rectangle if it has a high enough accuracy.
     public var isAutoScanEnabled: Bool
     
     /// The orientation of the captured image
-    var editImageOrientation: CGImagePropertyOrientation
+    public var editImageOrientation: CGImagePropertyOrientation
     
     private init(isAutoScanEnabled: Bool = true, editImageOrientation: CGImagePropertyOrientation = .up) {
         self.device = AVCaptureDevice.default(for: .video)
