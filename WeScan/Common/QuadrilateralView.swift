@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 /// Simple enum to keep track of the position of the corners of a quadrilateral.
-enum CornerPosition {
+public enum CornerPosition {
     case topLeft
     case topRight
     case bottomRight

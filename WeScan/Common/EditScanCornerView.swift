@@ -9,9 +9,9 @@
 import UIKit
 
 /// A UIView used by corners of a quadrilateral that is aware of its position.
-final class EditScanCornerView: UIView {
+public final class EditScanCornerView: UIView {
     
-    let position: CornerPosition
+    public let position: CornerPosition
     
     /// The image to display when the corner view is highlighted.
     private var image: UIImage?
@@ -25,7 +25,7 @@ final class EditScanCornerView: UIView {
         return layer
     }()
     
-    init(frame: CGRect, position: CornerPosition) {
+    public init(frame: CGRect, position: CornerPosition) {
         self.position = position
         super.init(frame: frame)
         backgroundColor = UIColor.clear
@@ -37,12 +37,12 @@ final class EditScanCornerView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         layer.cornerRadius = bounds.width / 2.0
     }
     
-    override func draw(_ rect: CGRect) {
+    override public func draw(_ rect: CGRect) {
         super.draw(rect)
         
         let bezierPath = UIBezierPath(ovalIn: rect.insetBy(dx: circleLayer.lineWidth, dy: circleLayer.lineWidth))
@@ -52,13 +52,13 @@ final class EditScanCornerView: UIView {
         image?.draw(in: rect)
     }
     
-    func highlightWithImage(_ image: UIImage) {
+    public func highlightWithImage(_ image: UIImage) {
         isHighlighted = true
         self.image = image
         self.setNeedsDisplay()
     }
     
-    func reset() {
+    public func reset() {
         isHighlighted = false
         image = nil
         setNeedsDisplay()
