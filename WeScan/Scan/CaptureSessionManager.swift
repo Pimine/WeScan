@@ -11,7 +11,7 @@ import CoreMotion
 import AVFoundation
 
 /// A set of functions that inform the delegate object of the state of the detection.
-protocol RectangleDetectionDelegateProtocol: NSObjectProtocol {
+public protocol RectangleDetectionDelegateProtocol: NSObjectProtocol {
     
     /// Called when the capture of a picture has started.
     ///
@@ -62,7 +62,7 @@ public final class CaptureSessionManager: NSObject, AVCaptureVideoDataOutputSamp
     
     // MARK: Life Cycle
     
-    init?(videoPreviewLayer: AVCaptureVideoPreviewLayer, delegate: RectangleDetectionDelegateProtocol? = nil) {
+    public init?(videoPreviewLayer: AVCaptureVideoPreviewLayer, delegate: RectangleDetectionDelegateProtocol? = nil) {
         self.videoPreviewLayer = videoPreviewLayer
         
         if delegate != nil {
