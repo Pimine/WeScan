@@ -35,7 +35,7 @@ extension CaptureSession {
     }
     
     /// Resets the camera's exposure and focus point to automatic
-    func resetFocusToAuto() throws {
+    public func resetFocusToAuto() throws {
         guard let device = device else {
             let error = ImageScannerControllerError.inputDevice
             throw error
@@ -57,7 +57,7 @@ extension CaptureSession {
     }
     
     /// Removes an existing focus rectangle if one exists, optionally animating the exit
-    func removeFocusRectangleIfNeeded(_ focusRectangle: FocusRectangleView?, animated: Bool) {
+    public func removeFocusRectangleIfNeeded(_ focusRectangle: FocusRectangleView?, animated: Bool) {
         guard let focusRectangle = focusRectangle else { return }
         if animated {
             UIView.animate(withDuration: 0.3, delay: 1.0, animations: {

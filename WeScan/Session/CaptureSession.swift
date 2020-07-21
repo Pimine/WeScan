@@ -21,7 +21,7 @@ public final class CaptureSession {
     var isEditing: Bool
     
     /// The status of auto scan. Auto scan tries to automatically scan a detected rectangle if it has a high enough accuracy.
-    var isAutoScanEnabled: Bool
+    public var isAutoScanEnabled: Bool
     
     /// The orientation of the captured image
     var editImageOrientation: CGImagePropertyOrientation
