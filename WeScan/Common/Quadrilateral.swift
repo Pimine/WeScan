@@ -30,7 +30,7 @@ public struct Quadrilateral: Transformable {
     }
 
     /// The path of the Quadrilateral as a `UIBezierPath`
-    var path: UIBezierPath {
+    public var path: UIBezierPath {
         let path = UIBezierPath()
         path.move(to: topLeft)
         path.addLine(to: topRight)
@@ -42,12 +42,12 @@ public struct Quadrilateral: Transformable {
     }
 
     /// The perimeter of the Quadrilateral
-    var perimeter: Double {
+    public var perimeter: Double {
         let perimeter = topLeft.distanceTo(point: topRight) + topRight.distanceTo(point: bottomRight) + bottomRight.distanceTo(point: bottomLeft) + bottomLeft.distanceTo(point: topLeft)
         return Double(perimeter)
     }
     
-    init(rectangleFeature: CIRectangleFeature) {
+    public init(rectangleFeature: CIRectangleFeature) {
         self.topLeft = rectangleFeature.topLeft
         self.topRight = rectangleFeature.topRight
         self.bottomLeft = rectangleFeature.bottomLeft
@@ -55,14 +55,14 @@ public struct Quadrilateral: Transformable {
     }
 
     @available(iOS 11.0, *)
-    init(rectangleObservation: VNRectangleObservation) {
+    public init(rectangleObservation: VNRectangleObservation) {
         self.topLeft = rectangleObservation.topLeft
         self.topRight = rectangleObservation.topRight
         self.bottomLeft = rectangleObservation.bottomLeft
         self.bottomRight = rectangleObservation.bottomRight
     }
 
-    init(topLeft: CGPoint, topRight: CGPoint, bottomRight: CGPoint, bottomLeft: CGPoint) {
+    public init(topLeft: CGPoint, topRight: CGPoint, bottomRight: CGPoint, bottomLeft: CGPoint) {
         self.topLeft = topLeft
         self.topRight = topRight
         self.bottomRight = bottomRight
@@ -74,7 +74,7 @@ public struct Quadrilateral: Transformable {
     /// - Parameters:
     ///   - t: the transform to apply.
     /// - Returns: The transformed quadrilateral.
-    func applying(_ transform: CGAffineTransform) -> Quadrilateral {
+    public func applying(_ transform: CGAffineTransform) -> Quadrilateral {
         let quadrilateral = Quadrilateral(topLeft: topLeft.applying(transform), topRight: topRight.applying(transform), bottomRight: bottomRight.applying(transform), bottomLeft: bottomLeft.applying(transform))
         
         return quadrilateral
@@ -86,7 +86,7 @@ public struct Quadrilateral: Transformable {
     ///   - distance: The distance (threshold) to use for the condition to be met.
     ///   - rectangleFeature: The other rectangle to compare this instance with.
     /// - Returns: True if the given rectangle is within the given distance of this rectangle instance.
-    func isWithin(_ distance: CGFloat, ofRectangleFeature rectangleFeature: Quadrilateral) -> Bool {
+    public func isWithin(_ distance: CGFloat, ofRectangleFeature rectangleFeature: Quadrilateral) -> Bool {
         
         let topLeftRect = topLeft.surroundingSquare(withSize: distance)
         if !topLeftRect.contains(rectangleFeature.topLeft) {
@@ -112,7 +112,7 @@ public struct Quadrilateral: Transformable {
     }
     
     /// Reorganizes the current quadrilateal, making sure that the points are at their appropriate positions. For example, it ensures that the top left point is actually the top and left point point of the quadrilateral.
-    mutating func reorganize() {
+    public mutating func reorganize() {
         let points = [topLeft, topRight, bottomRight, bottomLeft]
         let ySortedPoints = sortPointsByYValue(points)
         
@@ -143,7 +143,7 @@ public struct Quadrilateral: Transformable {
     ///   - toSize: The size to scale the quadrilateral to.
     ///   - rotationAngle: The optional rotation to apply.
     /// - Returns: The newly scaled and potentially rotated quadrilateral.
-    func scale(_ fromSize: CGSize, _ toSize: CGSize, withRotationAngle rotationAngle: CGFloat = 0.0) -> Quadrilateral {
+    public func scale(_ fromSize: CGSize, _ toSize: CGSize, withRotationAngle rotationAngle: CGFloat = 0.0) -> Quadrilateral {
         var invertedfromSize = fromSize
         let rotated = rotationAngle != 0.0
         
@@ -204,7 +204,7 @@ extension Quadrilateral {
     /// - Parameters:
     ///   - height: The height of the rect containing the quadrilateral.
     /// - Returns: The same quadrilateral in the cartesian corrdinate system.
-    func toCartesian(withHeight height: CGFloat) -> Quadrilateral {
+    public func toCartesian(withHeight height: CGFloat) -> Quadrilateral {
         let topLeft = self.topLeft.cartesian(withHeight: height)
         let topRight = self.topRight.cartesian(withHeight: height)
         let bottomRight = self.bottomRight.cartesian(withHeight: height)
