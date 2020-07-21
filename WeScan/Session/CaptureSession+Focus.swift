@@ -11,7 +11,7 @@ import Foundation
 /// Extension to CaptureSession that controls auto focus
 extension CaptureSession {
     /// Sets the camera's exposure and focus point to the given point
-    func setFocusPointToTapPoint(_ tapPoint: CGPoint) throws {
+    public func setFocusPointToTapPoint(_ tapPoint: CGPoint) throws {
         guard let device = device else {
             let error = ImageScannerControllerError.inputDevice
             throw error
